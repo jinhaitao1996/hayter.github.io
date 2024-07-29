@@ -28,7 +28,7 @@
 <meta property="og:description" content="本人并不专于音频开发，但日常工作中难免也会经常接触到音频，因此写下本文记录嵌入式与其相关的基础知识，包括但不限于音频采集、播放、编解码、频谱分析、编码开发应用等方面，便于理清其基本概念及开发思路。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-22T06:31:55.131Z">
+<meta property="article:modified_time" content="2024-07-26T11:49:43.451Z">
 <meta property="article:author" content="cjd">
 <meta property="article:tag" content="C语言,嵌入式,Linux,mcu">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-07-22 14:31:55" itemprop="dateModified" datetime="2024-07-22T14:31:55+08:00">2024-07-22</time>
+                <time title="Modified: 2024-07-26 19:49:43" itemprop="dateModified" datetime="2024-07-26T19:49:43+08:00">2024-07-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -322,11 +322,11 @@
 <h3 id="dB-分贝"><a href="#dB-分贝" class="headerlink" title="dB 分贝"></a>dB 分贝</h3><p>在音频处理和日常生活中提到的“dB”（分贝）都是衡量声音强度的单位，但它们的使用场景和参照点有所不同。</p>
 <p>dB是对数单位，用于表达两个量的比值，用于描述声音强度、功率、电压或电流等物理量的<strong>相对变化</strong>。</p>
 <p>生活中的dB：通常用于描述声压级，即声音在空气中的压力波动相对于基准声压的比值。其中基准声压，即0dB（通常为20uPa）是人耳能听到的最低声压。</p>
-<p>音频处理中的dB：通常用于表示信号电平的相对变化（可以有不同的参照点，常见的是dBFS），以满刻度为基准，0dB通常表示设备能够安全输出的最高音量。将音量设置为负值（如-6dB、-12dB），分别表示音量降至原来的1&#x2F;2、1&#x2F;4。</p>
+<p>音频处理中的dB：通常用于表示信号电平的相对变化（可以有不同的参照点，常见的是dBFS），以满刻度为基准。</p>
+<p>以<code>16bit</code>位深度的PCM音频数据为例，那么其最大值<code>0xFFFF</code>则表示为0dB。</p>
 <blockquote>
-<p>为什么-6dB对应1&#x2F;2，是因为分贝是对数单位的定义，以及功率与电压的转换关系。此处不过多赘述</p>
+<p>相应的dBFS计算公式为<code>dBFS = 20 * lg (signal / 0xFFFF)</code>。 其中，signal为实际的采样值。<br>dBFS &#x3D; 20 * lg (0x01 &#x2F; 0xFFFF) &#x3D; -96dB<br>所以，16bit位深的峰值表为 0dB到-96dB<br>可推算，24bit位深，峰值表为 0dB到-144dB</p>
 </blockquote>
-<p>思考：dB分贝处理体现在何处程序代码？</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><strong>音频播放流程：</strong> 从 文件&#x2F;蓝牙音频&#x2F;IIS&#x2F;SPDIF 到 PCM数据流，到发声，有一整条串行处理流：<strong>直接PCM数据处理、EQ&#x2F;DRC处理、DSP数字增益、DAC、模拟增益、输出</strong></p>
 <blockquote>
 <p>处理节点可以自行进行适当配置， user_handler？</p>
@@ -369,7 +369,17 @@
 <p>HFP同样使用CVSD或类似的语音编解码器，以确保通话质量，但它其注重于提供免提通话的便利性，尤其是在驾驶或无法手持电话的情况下。</p>
 </blockquote>
 <h3 id="BT-Audio接口之-A2DP-HSP-HFP-配置小结"><a href="#BT-Audio接口之-A2DP-HSP-HFP-配置小结" class="headerlink" title="BT Audio接口之 A2DP&#x2F;HSP&#x2F;HFP 配置小结"></a>BT Audio接口之 A2DP&#x2F;HSP&#x2F;HFP 配置小结</h3><p>BT Audio接口使用蓝牙无线技术，无需物理线缆即可传输音频数据。<br>配置文件支持：依赖于蓝牙协议中的特定配置文件，如A2DP（高级音频分配配置文件）用于高质量音频流传输，或者HFP&#x2F;HSP（免提配置文件&#x2F;耳机配置文件）用于语音通话。</p>
-<p><strong>A2DP与HSP&#x2F;HFP的差异：</strong><br>A2DP针对高质量音频传输，而HSP&#x2F;HFP专注于清晰的语音通话<br>A2DP使用ACL Link，适合连续的音频流传输；HSP&#x2F;HFP使用SCO Link，适合实时的语音通话。<br>A2DP支持多种音频编解码器，以适应不同的音频质量需求；HSP&#x2F;HFP使用专为语音设计的编解码器</p>
+<br>
+
+
+
+<p><strong>A2DP与HSP&#x2F;HFP的差异：</strong></p>
+<ul>
+<li>A2DP针对高质量音频传输，而HSP&#x2F;HFP专注于清晰的语音通话</li>
+<li>A2DP用于音频的下行传输，HSP&#x2F;HFP配置文件支持音频的上行和下行双向传输，但音频质量较A2DP低。如果要同时使用高音质音频及语音上行，如游戏耳机，可以组合使用多个配置文件实现。</li>
+<li>A2DP使用ACL Link，适合连续的音频流传输；HSP&#x2F;HFP使用SCO Link，适合实时的语音通话。</li>
+<li>A2DP支持多种音频编解码器，以适应不同的音频质量需求；HSP&#x2F;HFP使用专为语音设计的编解码器</li>
+</ul>
 <p>蓝牙设备可以同时支持A2DP（Advanced Audio Distribution Profile）和HSP&#x2F;HFP（Headset Profile &#x2F; Hands-Free Profile）配置文件</p>
 <p>例如，当将一部支持A2DP和HFP的手机与一副同样支持这两种配置文件的蓝牙耳机配对时，手机会自动检测并建立与耳机的连接。在大多数情况下，手机会优先使用A2DP进行音频流传输，而当有来电时，连接会自动切换到HFP，以确保高质量的语音通话。</p>
 <p>在某些情况下，设备可能需要手动或自动切换配置文件。例如，当用户正在通过A2DP听音乐时，如果接收到电话呼叫，设备通常会自动暂停音乐播放并切换到HFP进行通话。通话结束后，设备会自动返回到A2DP继续播放音乐。</p>
@@ -435,7 +445,10 @@
     <a href="/2024/07/12/%E6%9D%B0%E7%90%86%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" rel="prev" title="杰理科技SDK开发笔记">
       <i class="fa fa-chevron-left"></i> 杰理科技SDK开发笔记
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/26/%E8%93%9D%E7%89%99%E5%BA%94%E7%94%A8%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91/" rel="next" title="蓝牙协议栈常识概述及业务应用记录">
+      蓝牙协议栈常识概述及业务应用记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -508,7 +521,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -557,12 +570,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">79k</span>
+    <span title="Symbols count total">80k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:24</span>
+    <span title="Reading time total">4:27</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

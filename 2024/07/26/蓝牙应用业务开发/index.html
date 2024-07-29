@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"enable","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录ARM架构体系、指令集、寄存器等相关的一些概念知识">
+  <meta name="description" content="讲述蓝牙协议栈相关概念，并以杰理芯片为例，主要记录在业务层上的蓝牙应用与开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ARM架构及相关概念">
-<meta property="og:url" content="http://example.com/2023/12/04/ARM%E6%9E%B6%E6%9E%84%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:title" content="蓝牙协议栈常识概述及业务应用记录">
+<meta property="og:url" content="http://example.com/2024/07/26/%E8%93%9D%E7%89%99%E5%BA%94%E7%94%A8%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Jindu-Chen">
-<meta property="og:description" content="记录ARM架构体系、指令集、寄存器等相关的一些概念知识">
+<meta property="og:description" content="讲述蓝牙协议栈相关概念，并以杰理芯片为例，主要记录在业务层上的蓝牙应用与开发">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-16T07:39:20.683Z">
+<meta property="article:published_time" content="2024-07-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-29T09:46:07.681Z">
 <meta property="article:author" content="cjd">
 <meta property="article:tag" content="C语言,嵌入式,Linux,mcu">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/12/04/ARM%E6%9E%B6%E6%9E%84%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+<link rel="canonical" href="http://example.com/2024/07/26/%E8%93%9D%E7%89%99%E5%BA%94%E7%94%A8%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>ARM架构及相关概念 | Jindu-Chen</title>
+  <title>蓝牙协议栈常识概述及业务应用记录 | Jindu-Chen</title>
   
 
 
@@ -195,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/04/ARM%E6%9E%B6%E6%9E%84%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/26/%E8%93%9D%E7%89%99%E5%BA%94%E7%94%A8%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -208,7 +208,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ARM架构及相关概念
+          蓝牙协议栈常识概述及业务应用记录
         </h1>
 
         <div class="post-meta">
@@ -218,15 +218,24 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-12-04 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-04T00:00:00+08:00">2023-12-04</time>
+              <time title="Created: 2024-07-26 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-26T00:00:00+08:00">2024-07-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-07-16 15:39:20" itemprop="dateModified" datetime="2024-07-16T15:39:20+08:00">2024-07-16</time>
+                <time title="Modified: 2024-07-29 17:46:07" itemprop="dateModified" datetime="2024-07-29T17:46:07+08:00">2024-07-29</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -234,7 +243,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>986</span>
+              <span>760</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -243,7 +252,7 @@
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               <span>3 mins.</span>
             </span>
-            <div class="post-description">记录ARM架构体系、指令集、寄存器等相关的一些概念知识</div>
+            <div class="post-description">讲述蓝牙协议栈相关概念，并以杰理芯片为例，主要记录在业务层上的蓝牙应用与开发</div>
 
         </div>
       </header>
@@ -254,47 +263,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="ARM指令集"><a href="#ARM指令集" class="headerlink" title="ARM指令集"></a>ARM指令集</h2><h3 id="Thumb指令集"><a href="#Thumb指令集" class="headerlink" title="Thumb指令集"></a>Thumb指令集</h3><p>其是ARM指令集的一个子集，16位的代码宽度</p>
-<h2 id="哈佛架构与冯诺依曼架构"><a href="#哈佛架构与冯诺依曼架构" class="headerlink" title="哈佛架构与冯诺依曼架构"></a>哈佛架构与冯诺依曼架构</h2><h2 id="CPU寄存器"><a href="#CPU寄存器" class="headerlink" title="CPU寄存器"></a>CPU寄存器</h2><p><strong>通用寄存器：</strong>R0-R15</p>
-<ul>
-<li>R0-R3：在函数调用时，用于传递前四个参数；函数调用结束后，R0通常用于存储函数返回值</li>
-<li>R4-R11：通用寄存器，主要用于存储局部变量。触发OS PendSV&#x2F;SVC 异常时，Cortex-M内核并不会自动压栈弹栈此部分寄存器值，须由用户RTOS程序手动压栈弹栈</li>
-<li>R12：通用寄存器，</li>
-<li>R13（SP）：用作堆栈指针，Cortex-M3&#x2F;4 内核在物理上存在两个堆栈指针</li>
-<li>R14（LR）：存储函数返回地址，当函数被调用时，LR保存调用函数的返回地址。函数返回时，R14会将返回地址写入程序计数器，使程序返回到调用函数</li>
-<li>R15（PC）：指向下一条要执行指令的地址</li>
-</ul>
-<p><strong>特殊寄存器：</strong></p>
-<ul>
-<li>程序状态字寄存器组（PSRs）：</li>
-<li>中断屏蔽寄存器组（PRIMASK、FAULTMASK、BASEPRI）</li>
-<li>控制寄存器（CONTROL）：</li>
-<li>浮点寄存器</li>
-</ul>
-<p>帧指针（FP）：取决于编译器和编译选择，选择一个通用寄存器，在函数调用栈中跟踪堆栈帧的位置</p>
-<h3 id="ARM不同内核架构的CPU寄存器组异同"><a href="#ARM不同内核架构的CPU寄存器组异同" class="headerlink" title="ARM不同内核架构的CPU寄存器组异同"></a>ARM不同内核架构的CPU寄存器组异同</h3><p>如：Cortex-M系列只有两种运行模式：特权模式和非特权模式，其中通用寄存器组是共用的，但堆栈指针 R13（PSP、MSP）是各模式独有的</p>
-<p>如：Cortex-A7 有 9 种运行模式，每一种运行模式都有一组与之对应的寄存器组。</p>
-<ul>
-<li>每一种模式可见的寄存器包括 15 个通用寄存器(R0~R14)、一两个程序状态寄存器和一个程序计数器 PC</li>
-<li>在这些寄存器中，有些是所有模式所共用的同一个物理寄存器，有一些是各模式自己所独立拥有的</li>
-<li>Cortex-A系列内核的各模式下的所有CPU寄存器总计：34个通用寄存器、8个状态寄存器、Hyp 模式下独有一个 ELR_Hyp 寄存器</li>
-</ul>
-<h2 id="Cortex-M内核"><a href="#Cortex-M内核" class="headerlink" title="Cortex-M内核"></a>Cortex-M内核</h2><p>在 Cortex-M 内核中，中断和异常都由 NVIC（Nested Vectored Interrupt Controller）来管理。NVIC 是一个硬件模块，负责处理来自外部或内部的所有中断和异常<br><br></p>
-<p>中断是指来自外部或内部事件的请求，如定时器超时、外部引脚中断<br><br></p>
-<p>异常是CPU执行程序发生的错误处理（如：内存访问非法、除零）或者主动软件触发异常，包括PendSV、HardFault等异常<br><br></p>
-<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h4 id="glue-7、glue-7t-和-eh-frame"><a href="#glue-7、glue-7t-和-eh-frame" class="headerlink" title="glue_7、glue_7t 和 eh_frame"></a>glue_7、glue_7t 和 eh_frame</h4><ul>
-<li><p>glue_7 和 glue_7t 是 ARM 架构中用于将 ARM 代码和 Thumb 代码粘合在一起的代码。</p>
-</li>
-<li><p>ARM 架构支持两种指令集：ARM 指令集和 Thumb 指令集。ARM 指令集是 32 位指令集，而 Thumb 指令集是 16 位指令集。为了兼容两种指令集，ARM 架构中引入了一种称为 Thumb 嵌入 的机制。</p>
-</li>
-<li><p>Thumb 嵌入允许 ARM 代码中嵌入 Thumb 指令，反之亦然。当 ARM 代码中嵌入 Thumb 指令时，连接器会生成 glue_7 或 glue_7t  section 来将 ARM 代码和 Thumb 代码粘合在一起。</p>
-</li>
-<li><p>eh_frame 是异常处理框架（Exception Handling Frame）的缩写。异常处理框架是用于支持异常处理的一种结构。当程序发生异常时，异常处理框架会保存程序的运行状态，并将程序转到异常处理程序。</p>
-</li>
-<li><p>异常处理框架通常包含以下信息：<br>  程序的堆栈指针（SP）<br>  程序的返回地址（LR）<br>  异常发生时的寄存器值</p>
-</li>
-<li><p>eh_frame section 包含了异常处理框架的信息。当程序发生异常时，连接器会将 eh_frame section 加载到内存中，以便异常处理程序可以访问异常处理框架的信息</p>
-</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="蓝牙概述"><a href="#蓝牙概述" class="headerlink" title="蓝牙概述"></a>蓝牙概述</h2><h3 id="蓝牙协议栈概述"><a href="#蓝牙协议栈概述" class="headerlink" title="蓝牙协议栈概述"></a>蓝牙协议栈概述</h3><p>蓝牙协议栈的构成：基带层、l2cap层、<br>att层、gatt层</p>
+<p>l2cap是什么</p>
+<p>SPP是啥，与BLE的区别</p>
+<p>经典蓝牙和低功耗蓝牙、音频蓝牙和数据蓝牙，并不是一一对应</p>
+<p>蓝牙的带宽</p>
+<p>蓝牙profile是啥</p>
+<p>edr蓝牙升级？BLE蓝牙升级？</p>
+<p>ATT_Write是什么</p>
+<p>蓝牙透传是什么<br>经典蓝牙：在经典蓝牙中，透传通常通过串行端口配置文件（Serial Port Profile, SPP）实现。SPP提供了一个虚拟的串行端口，使得蓝牙设备可以像传统的串行端口设备一样进行数据交换。</p>
+<p>低功耗蓝牙（BLE）：在BLE中，透传可以通过定义特定的GATT服务和特征值来实现。通常，一个服务会包含至少两个特征值，一个用于接收数据，另一个用于发送数据。这些特征值可以被配置为支持读、写、通知或指示等操作。</p>
+<p>GATT</p>
+<p>BLE提供了一种更为高级和灵活的数据传输机制，它基于GATT（Generic Attribute Profile）服务和特征值的概念，允许设备之间传输各种类型的数据，而不仅仅是串行数据。在BLE中，数据传输是通过服务和特征值来进行的，每个特征值可以被视为一个数据通道。</p>
+<p>BLE SPP A2DP HID</p>
+<p>广播内容设置</p>
+<h3 id="经典蓝牙"><a href="#经典蓝牙" class="headerlink" title="经典蓝牙"></a>经典蓝牙</h3><p>广播机制</p>
+<h3 id="低功耗蓝牙"><a href="#低功耗蓝牙" class="headerlink" title="低功耗蓝牙"></a>低功耗蓝牙</h3><p>如何实现多机BLE通信？</p>
+<p>特征值、服务是什么？</p>
+<p>广播机制<br>可以直接通过广播发送数据</p>
+<h3 id="BT-BLE区别及应用"><a href="#BT-BLE区别及应用" class="headerlink" title="BT&#x2F;BLE区别及应用"></a>BT&#x2F;BLE区别及应用</h3><p>人机交互设备方案</p>
+<p>广播</p>
+<p>数据传输</p>
+<p>音频方案</p>
+<h2 id="蓝牙功能业务方案"><a href="#蓝牙功能业务方案" class="headerlink" title="蓝牙功能业务方案"></a>蓝牙功能业务方案</h2><h3 id="TWS耳机"><a href="#TWS耳机" class="headerlink" title="TWS耳机"></a>TWS耳机</h3><p>在TWS耳机中，音频同步是一个关键问题，特别是在左右耳塞之间。为了确保音频在两个耳塞之间同步播放，TWS耳机通常采用以下几种方法：</p>
+<p>主从模式：早期的TWS耳机采用主从模式，其中一个耳塞作为主设备，与音频源设备建立连接，然后将音频转发到另一个从属耳塞。这种方法可能导致左右耳塞之间的轻微延迟差异。</p>
+<p>双主机模式：较新的TWS耳机采用双主机模式，其中每个耳塞都直接与音频源设备建立连接，这减少了延迟并提高了同步性。</p>
+<p>低延迟编解码器：使用低延迟的音频编解码器，如aptX Adaptive或LC3，有助于减少音频传输中的延迟，从而改善同步效果。</p>
+<h3 id="一主多从方案"><a href="#一主多从方案" class="headerlink" title="一主多从方案"></a>一主多从方案</h3><h2 id="杰理蓝牙方案概述"><a href="#杰理蓝牙方案概述" class="headerlink" title="杰理蓝牙方案概述"></a>杰理蓝牙方案概述</h2><p>蓝牙事件</p>
+<p>蓝牙BT BLE API接口</p>
+<p>事件回调</p>
+<p>蓝牙事件重点关注以下：</p>
+<p><code>//include_lib/btstack/avctp_user.h</code><br><code>//apps/soundbox/include/soundbox.h</code></p>
+<p>有哪些事件？</p>
+<p><code>//include_lib/btstack/le/ble_api.h</code></p>
+<h2 id="常见疑惑解答及扩展思考"><a href="#常见疑惑解答及扩展思考" class="headerlink" title="常见疑惑解答及扩展思考"></a>常见疑惑解答及扩展思考</h2><h3 id="音频-数据蓝牙与BT-BLE的区别、联系？"><a href="#音频-数据蓝牙与BT-BLE的区别、联系？" class="headerlink" title="音频&#x2F;数据蓝牙与BT&#x2F;BLE的区别、联系？"></a>音频&#x2F;数据蓝牙与BT&#x2F;BLE的区别、联系？</h3><h2 id="参考站点"><a href="#参考站点" class="headerlink" title="参考站点"></a>参考站点</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40587575/article/details/108205808">蓝牙协议栈详细解析</a></li>
 </ul>
 
     </div>
@@ -311,13 +314,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/12/04/%E9%80%9A%E8%BF%87VSCode-GDB-%E6%90%AD%E5%BB%BAWSL%E4%B8%8B%E7%9A%84%E5%B5%8C%E5%85%A5%E5%BC%8Fmcu%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83/" rel="prev" title="通过VSCode + GDB 搭建WSL下的嵌入式MCU调试环境">
-      <i class="fa fa-chevron-left"></i> 通过VSCode + GDB 搭建WSL下的嵌入式MCU调试环境
+    <a href="/2024/07/16/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E4%B9%8B%E9%9F%B3%E9%A2%91%E6%9D%82%E9%A1%B9%E7%9F%A5%E8%AF%86%E8%AE%B0%E5%BD%95/" rel="prev" title="嵌入式之音频开发记录">
+      <i class="fa fa-chevron-left"></i> 嵌入式之音频开发记录
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/12/04/C%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/" rel="next" title="C语言知识点记录">
-      C语言知识点记录 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -376,7 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARM%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="nav-number">1.</span> <span class="nav-text">ARM指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thumb%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="nav-number">1.1.</span> <span class="nav-text">Thumb指令集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E4%BD%9B%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E6%9E%B6%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">哈佛架构与冯诺依曼架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">CPU寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARM%E4%B8%8D%E5%90%8C%E5%86%85%E6%A0%B8%E6%9E%B6%E6%9E%84%E7%9A%84CPU%E5%AF%84%E5%AD%98%E5%99%A8%E7%BB%84%E5%BC%82%E5%90%8C"><span class="nav-number">3.1.</span> <span class="nav-text">ARM不同内核架构的CPU寄存器组异同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cortex-M%E5%86%85%E6%A0%B8"><span class="nav-number">4.</span> <span class="nav-text">Cortex-M内核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">5.</span> <span class="nav-text">杂项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#glue-7%E3%80%81glue-7t-%E5%92%8C-eh-frame"><span class="nav-number">5.0.1.</span> <span class="nav-text">glue_7、glue_7t 和 eh_frame</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">蓝牙概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">蓝牙协议栈概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E8%93%9D%E7%89%99"><span class="nav-number">2.2.</span> <span class="nav-text">经典蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99"><span class="nav-number">2.3.</span> <span class="nav-text">低功耗蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BT-BLE%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">BT&#x2F;BLE区别及应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8A%9F%E8%83%BD%E4%B8%9A%E5%8A%A1%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">蓝牙功能业务方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TWS%E8%80%B3%E6%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">TWS耳机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E6%96%B9%E6%A1%88"><span class="nav-number">3.2.</span> <span class="nav-text">一主多从方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%B0%E7%90%86%E8%93%9D%E7%89%99%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">杰理蓝牙方案概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%96%91%E6%83%91%E8%A7%A3%E7%AD%94%E5%8F%8A%E6%89%A9%E5%B1%95%E6%80%9D%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">常见疑惑解答及扩展思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91-%E6%95%B0%E6%8D%AE%E8%93%9D%E7%89%99%E4%B8%8EBT-BLE%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E8%81%94%E7%B3%BB%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">音频&#x2F;数据蓝牙与BT&#x2F;BLE的区别、联系？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E7%AB%99%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">参考站点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
