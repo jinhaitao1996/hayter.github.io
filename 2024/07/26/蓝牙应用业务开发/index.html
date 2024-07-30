@@ -28,7 +28,7 @@
 <meta property="og:description" content="讲述蓝牙协议栈相关概念，并以杰理芯片为例，主要记录在业务层上的蓝牙应用与开发">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-29T09:46:07.681Z">
+<meta property="article:modified_time" content="2024-07-30T06:43:50.966Z">
 <meta property="article:author" content="cjd">
 <meta property="article:tag" content="C语言,嵌入式,Linux,mcu">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-07-29 17:46:07" itemprop="dateModified" datetime="2024-07-29T17:46:07+08:00">2024-07-29</time>
+                <time title="Modified: 2024-07-30 14:43:50" itemprop="dateModified" datetime="2024-07-30T14:43:50+08:00">2024-07-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,14 +243,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>760</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>5 mins.</span>
             </span>
             <div class="post-description">讲述蓝牙协议栈相关概念，并以杰理芯片为例，主要记录在业务层上的蓝牙应用与开发</div>
 
@@ -263,7 +263,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="蓝牙概述"><a href="#蓝牙概述" class="headerlink" title="蓝牙概述"></a>蓝牙概述</h2><h3 id="蓝牙协议栈概述"><a href="#蓝牙协议栈概述" class="headerlink" title="蓝牙协议栈概述"></a>蓝牙协议栈概述</h3><p>蓝牙协议栈的构成：基带层、l2cap层、<br>att层、gatt层</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>蓝牙是一种短距离无线通信技术，适用于短距离（几米到几十米）的通信。</p>
+<h2 id="蓝牙基础概述"><a href="#蓝牙基础概述" class="headerlink" title="蓝牙基础概述"></a>蓝牙基础概述</h2><h3 id="蓝牙协议栈结构"><a href="#蓝牙协议栈结构" class="headerlink" title="蓝牙协议栈结构"></a>蓝牙协议栈结构</h3><p>分为主机和控制器：<br>控制器：物理层PHY、链路层LL、主机控制接口层HCI</p>
+<p>主机：L2CAP、安全管理层、属性协议层ATT、通用访问配置文件层GAP、通用属性配置文件层GATT</p>
+<h3 id="蓝牙协议栈概念"><a href="#蓝牙协议栈概念" class="headerlink" title="蓝牙协议栈概念"></a>蓝牙协议栈概念</h3><p>蓝牙协议栈的构成：基带层、l2cap层、<br>att层、gatt层</p>
 <p>l2cap是什么</p>
 <p>SPP是啥，与BLE的区别</p>
 <p>经典蓝牙和低功耗蓝牙、音频蓝牙和数据蓝牙，并不是一一对应</p>
@@ -277,6 +280,7 @@
 <p>BLE提供了一种更为高级和灵活的数据传输机制，它基于GATT（Generic Attribute Profile）服务和特征值的概念，允许设备之间传输各种类型的数据，而不仅仅是串行数据。在BLE中，数据传输是通过服务和特征值来进行的，每个特征值可以被视为一个数据通道。</p>
 <p>BLE SPP A2DP HID</p>
 <p>广播内容设置</p>
+<p>蓝牙Mesh组网</p>
 <h3 id="经典蓝牙"><a href="#经典蓝牙" class="headerlink" title="经典蓝牙"></a>经典蓝牙</h3><p>广播机制</p>
 <h3 id="低功耗蓝牙"><a href="#低功耗蓝牙" class="headerlink" title="低功耗蓝牙"></a>低功耗蓝牙</h3><p>如何实现多机BLE通信？</p>
 <p>特征值、服务是什么？</p>
@@ -289,14 +293,26 @@
 <p>主从模式：早期的TWS耳机采用主从模式，其中一个耳塞作为主设备，与音频源设备建立连接，然后将音频转发到另一个从属耳塞。这种方法可能导致左右耳塞之间的轻微延迟差异。</p>
 <p>双主机模式：较新的TWS耳机采用双主机模式，其中每个耳塞都直接与音频源设备建立连接，这减少了延迟并提高了同步性。</p>
 <p>低延迟编解码器：使用低延迟的音频编解码器，如aptX Adaptive或LC3，有助于减少音频传输中的延迟，从而改善同步效果。</p>
-<h3 id="一主多从方案"><a href="#一主多从方案" class="headerlink" title="一主多从方案"></a>一主多从方案</h3><h2 id="杰理蓝牙方案概述"><a href="#杰理蓝牙方案概述" class="headerlink" title="杰理蓝牙方案概述"></a>杰理蓝牙方案概述</h2><p>蓝牙事件</p>
+<h3 id="一主多从方案"><a href="#一主多从方案" class="headerlink" title="一主多从方案"></a>一主多从方案</h3><h3 id="蓝牙Mesh网络"><a href="#蓝牙Mesh网络" class="headerlink" title="蓝牙Mesh网络"></a>蓝牙Mesh网络</h3><p>单播地址、组播地址</p>
+<h2 id="杰理蓝牙方案概述"><a href="#杰理蓝牙方案概述" class="headerlink" title="杰理蓝牙方案概述"></a>杰理蓝牙方案概述</h2><p>蓝牙事件</p>
 <p>蓝牙BT BLE API接口</p>
 <p>事件回调</p>
 <p>蓝牙事件重点关注以下：</p>
 <p><code>//include_lib/btstack/avctp_user.h</code><br><code>//apps/soundbox/include/soundbox.h</code></p>
 <p>有哪些事件？</p>
 <p><code>//include_lib/btstack/le/ble_api.h</code></p>
-<h2 id="常见疑惑解答及扩展思考"><a href="#常见疑惑解答及扩展思考" class="headerlink" title="常见疑惑解答及扩展思考"></a>常见疑惑解答及扩展思考</h2><h3 id="音频-数据蓝牙与BT-BLE的区别、联系？"><a href="#音频-数据蓝牙与BT-BLE的区别、联系？" class="headerlink" title="音频&#x2F;数据蓝牙与BT&#x2F;BLE的区别、联系？"></a>音频&#x2F;数据蓝牙与BT&#x2F;BLE的区别、联系？</h3><h2 id="参考站点"><a href="#参考站点" class="headerlink" title="参考站点"></a>参考站点</h2><ul>
+<h2 id="常见疑惑解答及扩展思考"><a href="#常见疑惑解答及扩展思考" class="headerlink" title="常见疑惑解答及扩展思考"></a>常见疑惑解答及扩展思考</h2><h3 id="音频-数据蓝牙与经典蓝牙-低功耗蓝牙的区别、联系？"><a href="#音频-数据蓝牙与经典蓝牙-低功耗蓝牙的区别、联系？" class="headerlink" title="音频&#x2F;数据蓝牙与经典蓝牙&#x2F;低功耗蓝牙的区别、联系？"></a>音频&#x2F;数据蓝牙与经典蓝牙&#x2F;低功耗蓝牙的区别、联系？</h3><p>音频蓝牙通常利用经典蓝牙的A2DP（高级音频分发配置文件）进行音频传输，但也可以结合BLE用于耳机的配对和控制</p>
+<p>数据蓝牙可以是经典蓝牙BR&#x2F;EDR，也可以是低功耗蓝牙BLE。</p>
+<p>经典蓝牙（Bluetooth BR&#x2F;EDR）指的是蓝牙技术的传统版本，包括基本速率（BR）和增强数据速率（EDR）。</p>
+<p>低功耗蓝牙（Bluetooth Low Energy, BLE）：专为低功耗设计，适用于电池供电设备</p>
+<h3 id="单模蓝牙与双模蓝牙在底层的区别？"><a href="#单模蓝牙与双模蓝牙在底层的区别？" class="headerlink" title="单模蓝牙与双模蓝牙在底层的区别？"></a>单模蓝牙与双模蓝牙在底层的区别？</h3><p>在硬件层面上，双模蓝牙模块并不是简单地有两个独立的蓝牙模块，而是在单个模块内部集成了两种不同的基带处理单元，以及相应的射频（RF）和天线系统。这种设计允许设备根据通信需求在两种模式之间动态切换，以优化性能和功耗。</p>
+<h3 id="蓝牙透传是啥？"><a href="#蓝牙透传是啥？" class="headerlink" title="蓝牙透传是啥？"></a>蓝牙透传是啥？</h3><p>蓝牙透传可以应用于BT&#x2F;BLE中，在透传模式下，蓝牙模块设备间的数据透明地传输，无须开发者关心蓝牙协议细节，相当于串口通信一样。</p>
+<p>在经典蓝牙中，透传模式通常利用串行端口配置文件（Serial Port Profile, SPP）实现。SPP模拟了一个虚拟的串行端口，允许设备像使用物理串口那样进行数据传输。SPP提供了一个透明的数据通道，使得数据可以在两个设备之间无损地传输。</p>
+<p>在BLE透传中，数据通常通过GATT（Generic Attribute Profile）服务进行传输。开发者可以自定义一个服务UUID和相关的特性UUID，然后在客户端和服务器端建立连接后，使用这些服务和特性进行数据的读取和写入。</p>
+<h3 id="单模经典蓝牙可以并行执行A2DP和SPP吗？"><a href="#单模经典蓝牙可以并行执行A2DP和SPP吗？" class="headerlink" title="单模经典蓝牙可以并行执行A2DP和SPP吗？"></a>单模经典蓝牙可以并行执行A2DP和SPP吗？</h3><p>理论上，单模经典蓝牙设备可以同时支持多个配置文件，包括音频流和SPP透传，但这取决于设备的实际硬件和固件设计。</p>
+<p>受到资源竞争、延迟、带宽、协议栈管理、射频电路和天线等因素影响，通常设备会设计为只支持一种配置文件。</p>
+<p>因此，单模经典蓝牙设备是否能够同时播放音频和进行SPP透传，最终取决于设备的具体设计和制造商的实现。</p>
+<h2 id="参考站点"><a href="#参考站点" class="headerlink" title="参考站点"></a>参考站点</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40587575/article/details/108205808">蓝牙协议栈详细解析</a></li>
 </ul>
 
@@ -376,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">蓝牙概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">蓝牙协议栈概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E8%93%9D%E7%89%99"><span class="nav-number">2.2.</span> <span class="nav-text">经典蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99"><span class="nav-number">2.3.</span> <span class="nav-text">低功耗蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BT-BLE%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">BT&#x2F;BLE区别及应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8A%9F%E8%83%BD%E4%B8%9A%E5%8A%A1%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">蓝牙功能业务方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TWS%E8%80%B3%E6%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">TWS耳机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E6%96%B9%E6%A1%88"><span class="nav-number">3.2.</span> <span class="nav-text">一主多从方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%B0%E7%90%86%E8%93%9D%E7%89%99%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">杰理蓝牙方案概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%96%91%E6%83%91%E8%A7%A3%E7%AD%94%E5%8F%8A%E6%89%A9%E5%B1%95%E6%80%9D%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">常见疑惑解答及扩展思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91-%E6%95%B0%E6%8D%AE%E8%93%9D%E7%89%99%E4%B8%8EBT-BLE%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E8%81%94%E7%B3%BB%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">音频&#x2F;数据蓝牙与BT&#x2F;BLE的区别、联系？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E7%AB%99%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">参考站点</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%9F%BA%E7%A1%80%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">蓝牙基础概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">蓝牙协议栈结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E6%A6%82%E5%BF%B5"><span class="nav-number">2.2.</span> <span class="nav-text">蓝牙协议栈概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E8%93%9D%E7%89%99"><span class="nav-number">2.3.</span> <span class="nav-text">经典蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99"><span class="nav-number">2.4.</span> <span class="nav-text">低功耗蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BT-BLE%E5%8C%BA%E5%88%AB%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="nav-number">2.5.</span> <span class="nav-text">BT&#x2F;BLE区别及应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%8A%9F%E8%83%BD%E4%B8%9A%E5%8A%A1%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">蓝牙功能业务方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TWS%E8%80%B3%E6%9C%BA"><span class="nav-number">3.1.</span> <span class="nav-text">TWS耳机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%BB%E5%A4%9A%E4%BB%8E%E6%96%B9%E6%A1%88"><span class="nav-number">3.2.</span> <span class="nav-text">一主多从方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%93%9D%E7%89%99Mesh%E7%BD%91%E7%BB%9C"><span class="nav-number">3.3.</span> <span class="nav-text">蓝牙Mesh网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%B0%E7%90%86%E8%93%9D%E7%89%99%E6%96%B9%E6%A1%88%E6%A6%82%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">杰理蓝牙方案概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%96%91%E6%83%91%E8%A7%A3%E7%AD%94%E5%8F%8A%E6%89%A9%E5%B1%95%E6%80%9D%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">常见疑惑解答及扩展思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91-%E6%95%B0%E6%8D%AE%E8%93%9D%E7%89%99%E4%B8%8E%E7%BB%8F%E5%85%B8%E8%93%9D%E7%89%99-%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%81%E8%81%94%E7%B3%BB%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">音频&#x2F;数据蓝牙与经典蓝牙&#x2F;低功耗蓝牙的区别、联系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E6%A8%A1%E8%93%9D%E7%89%99%E4%B8%8E%E5%8F%8C%E6%A8%A1%E8%93%9D%E7%89%99%E5%9C%A8%E5%BA%95%E5%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">5.2.</span> <span class="nav-text">单模蓝牙与双模蓝牙在底层的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E9%80%8F%E4%BC%A0%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-number">5.3.</span> <span class="nav-text">蓝牙透传是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E6%A8%A1%E7%BB%8F%E5%85%B8%E8%93%9D%E7%89%99%E5%8F%AF%E4%BB%A5%E5%B9%B6%E8%A1%8C%E6%89%A7%E8%A1%8CA2DP%E5%92%8CSPP%E5%90%97%EF%BC%9F"><span class="nav-number">5.4.</span> <span class="nav-text">单模经典蓝牙可以并行执行A2DP和SPP吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E7%AB%99%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">参考站点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -439,12 +455,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">80k</span>
+    <span title="Symbols count total">81k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:27</span>
+    <span title="Reading time total">4:30</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
