@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="Jindu-Chen">
 <meta property="og:description" content="概述蓝牙协议栈结构及其相关概念，并以杰理芯片为例，主要记录在业务层上的蓝牙应用与开发">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/pictures/%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-07-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-31T01:45:44.871Z">
+<meta property="article:modified_time" content="2024-07-31T02:12:55.212Z">
 <meta property="article:author" content="cjd">
 <meta property="article:tag" content="C语言,嵌入式,Linux,mcu">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/pictures/%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE.png">
 
 <link rel="canonical" href="http://example.com/2024/07/26/%E8%93%9D%E7%89%99%E5%BA%94%E7%94%A8%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91/">
 
@@ -225,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-07-31 09:45:44" itemprop="dateModified" datetime="2024-07-31T09:45:44+08:00">2024-07-31</time>
+                <time title="Modified: 2024-07-31 10:12:55" itemprop="dateModified" datetime="2024-07-31T10:12:55+08:00">2024-07-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +245,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.6k</span>
+              <span>2.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -272,12 +274,11 @@
 <p>支持点对点及点对多点通信：</p>
 <p>跳频：</p>
 <p>工作距离：蓝牙设备分为三个功率等级，分别是：100 mW（20 dBm）、2.5 mW（4 dBm）和1 mW（0 dBm），相应的有效工作范围为：100 米、10 米和 1 米。</p>
-<h2 id="蓝牙基础概述"><a href="#蓝牙基础概述" class="headerlink" title="蓝牙基础概述"></a>蓝牙基础概述</h2><h3 id="蓝牙协议栈结构"><a href="#蓝牙协议栈结构" class="headerlink" title="蓝牙协议栈结构"></a>蓝牙协议栈结构</h3><p>分为主机和控制器：<br>控制器：物理层PHY、链路层LL、主机控制接口层HCI</p>
+<h2 id="蓝牙基础概述"><a href="#蓝牙基础概述" class="headerlink" title="蓝牙基础概述"></a>蓝牙基础概述</h2><h3 id="蓝牙协议栈结构"><a href="#蓝牙协议栈结构" class="headerlink" title="蓝牙协议栈结构"></a>蓝牙协议栈结构</h3><p><img src="/../pictures/%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE.png" alt="alt text"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">业务应用程序</span><br><span class="line"></span><br><span class="line">高层protocol/profile               TCP/IP        // BLE 高层 profile</span><br><span class="line">HSP HFP SPP   AVRCP A2DP </span><br><span class="line">PBAP MAP OPP                       PAN          通用属性配置文件层GATT    通用访问配置文件层GAP</span><br><span class="line">OBEX          AVCTP AVDTP HID SDP  BNEP          属性协议层ATT</span><br><span class="line">RFCOMM                                                  安全管理层（SM）</span><br><span class="line"></span><br><span class="line">逻辑链路控制和适配协议层（L2CAP）</span><br><span class="line"></span><br><span class="line">--- 主机控制器接口层（HCI） --- （单芯片方案没有明确的HCI层）</span><br><span class="line">            ACL SCO COMMAND EVENT</span><br><span class="line">---    </span><br><span class="line"></span><br><span class="line">链路管理层（LMP）   Audio                  链路层（LL：Link Layer）</span><br><span class="line"></span><br><span class="line">基带层（BB）                                  物理层（PHY）</span><br><span class="line"></span><br><span class="line">射频层（RF）</span><br></pre></td></tr></table></figure>
+
+<p>分为主机和控制器：<br>控制器：物理层PHY、链路层LL、主机控制接口层HCI</p>
 <p>主机：L2CAP、安全管理层、属性协议层ATT、通用访问配置文件层GAP、通用属性配置文件层GATT<br>基带层</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">业务应用程序</span><br><span class="line"></span><br><span class="line">高层协议</span><br><span class="line"></span><br><span class="line">            通用属性配置文件层GATT                通用访问配置文件层GAP</span><br><span class="line">            属性协议层ATT</span><br><span class="line">                                安全管理层（SM）</span><br><span class="line"></span><br><span class="line">逻辑链路控制和适配协议层（L2CAP）</span><br><span class="line"></span><br><span class="line">--- 主机控制器接口层（HCI） ---</span><br><span class="line"></span><br><span class="line">链路管理协议层</span><br><span class="line"></span><br><span class="line">链路层（LL：Link Layer）</span><br><span class="line"></span><br><span class="line">基带层/物理层（PHY）</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="蓝牙协议栈概念"><a href="#蓝牙协议栈概念" class="headerlink" title="蓝牙协议栈概念"></a>蓝牙协议栈概念</h3><p>蓝牙的带宽</p>
 <p>信道：连接信道、广播信道、扫描信道</p>
 <p>跳频<br>SCO  ACL 信道</p>
@@ -325,6 +326,7 @@
 <p>BLE使用特征服务作数据传输</p>
 <h2 id="参考站点"><a href="#参考站点" class="headerlink" title="参考站点"></a>参考站点</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40587575/article/details/108205808">蓝牙协议栈详细解析</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/XiaoXiaoPengBo/article/details/107466841">吐血推荐历史最全的蓝牙协议栈介绍</a></li>
 </ul>
 
     </div>
