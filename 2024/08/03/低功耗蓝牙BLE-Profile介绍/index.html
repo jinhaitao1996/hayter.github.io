@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="Jindu-Chen">
 <meta property="og:description" content="本文以个人理解角度，主要讲述低功耗蓝牙BLE的GATT层相关概念，包括Profile、Profile_data、服务、特征声明、特征值等以及其应用分析。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/pictures/20240803-BLE%E5%B9%BF%E6%92%AD%E8%BF%9E%E6%8E%A5%E5%AF%B9%E6%8E%A5%E5%9B%BE.png.png">
+<meta property="og:image" content="http://example.com/pictures/20240803-BLE%E5%B9%BF%E6%92%AD%E8%BF%9E%E6%8E%A5%E5%AF%B9%E6%8E%A5%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-08-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-03T09:57:29.035Z">
+<meta property="article:modified_time" content="2024-08-03T10:02:13.463Z">
 <meta property="article:author" content="cjd">
 <meta property="article:tag" content="C语言,嵌入式,Linux,mcu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/pictures/20240803-BLE%E5%B9%BF%E6%92%AD%E8%BF%9E%E6%8E%A5%E5%AF%B9%E6%8E%A5%E5%9B%BE.png.png">
+<meta name="twitter:image" content="http://example.com/pictures/20240803-BLE%E5%B9%BF%E6%92%AD%E8%BF%9E%E6%8E%A5%E5%AF%B9%E6%8E%A5%E5%9B%BE.png">
 
 <link rel="canonical" href="http://example.com/2024/08/03/%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99BLE-Profile%E4%BB%8B%E7%BB%8D/">
 
@@ -221,7 +221,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-08-03 00:00:00 / Modified: 17:57:29" itemprop="dateCreated datePublished" datetime="2024-08-03T00:00:00+08:00">2024-08-03</time>
+              <time title="Created: 2024-08-03 00:00:00 / Modified: 18:02:13" itemprop="dateCreated datePublished" datetime="2024-08-03T00:00:00+08:00">2024-08-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -344,7 +344,7 @@
 <p><strong>自定义服务和特征值：</strong></p>
 <p>自定义服务和特征值的 UUID 可以为 16 位或 128 位。<br>例如，一个自定义的服务 UUID 可能是 128 位的，而该服务下的特征值也可以是 128 位的 UUID，或者其中一个为 16 位，另一个为 128 位。</p>
 <p>128位 UUID 通常用于表示自定义的服务和特征值。这种 UUID 的格式为一组 32 位的十六进制数字，以连字号分为五段。<br>128位 UUID 的格式为 XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX。</p>
-<h2 id="嵌入式BLE之业务应用层开发"><a href="#嵌入式BLE之业务应用层开发" class="headerlink" title="嵌入式BLE之业务应用层开发"></a>嵌入式BLE之业务应用层开发</h2><p><img src="/../pictures/20240803-BLE%E5%B9%BF%E6%92%AD%E8%BF%9E%E6%8E%A5%E5%AF%B9%E6%8E%A5%E5%9B%BE.png.png" alt="alt text"></p>
+<h2 id="嵌入式BLE之业务应用层开发"><a href="#嵌入式BLE之业务应用层开发" class="headerlink" title="嵌入式BLE之业务应用层开发"></a>嵌入式BLE之业务应用层开发</h2><p><img src="/../pictures/20240803-BLE%E5%B9%BF%E6%92%AD%E8%BF%9E%E6%8E%A5%E5%AF%B9%E6%8E%A5%E5%9B%BE.png" alt="alt text"></p>
 <h3 id="BLE的广播包设置及分析"><a href="#BLE的广播包设置及分析" class="headerlink" title="BLE的广播包设置及分析"></a>BLE的广播包设置及分析</h3><p>0x02010609FF00008AE088E655540505DAF58F010201061409736F756E64636F72652053656C656374203253</p>
 <table>
 <thead>
