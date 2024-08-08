@@ -27,13 +27,11 @@
 <meta property="og:site_name" content="Jindu-Chen">
 <meta property="og:description" content="本文从新人角度，暂且以&#96;jl701n_soundbox_release_v1.4.2&#x2F;sdk&#96;为例，讲述对杰理SDK的入门与开发理解。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/pictures/%E6%9D%B0%E7%90%86SDK%E4%B8%BB%E6%A1%86%E6%9E%B6.drawio">
 <meta property="article:published_time" content="2024-07-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-08T06:46:45.543Z">
+<meta property="article:modified_time" content="2024-08-08T06:48:45.005Z">
 <meta property="article:author" content="cjd">
 <meta property="article:tag" content="C语言,嵌入式,Linux,mcu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/pictures/%E6%9D%B0%E7%90%86SDK%E4%B8%BB%E6%A1%86%E6%9E%B6.drawio">
 
 <link rel="canonical" href="http://example.com/2024/07/12/%E6%9D%B0%E7%90%86%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">
 
@@ -227,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-08-08 14:46:45" itemprop="dateModified" datetime="2024-08-08T14:46:45+08:00">2024-08-08</time>
+                <time title="Modified: 2024-08-08 14:48:45" itemprop="dateModified" datetime="2024-08-08T14:48:45+08:00">2024-08-08</time>
               </span>
 
           <br>
@@ -282,7 +280,7 @@
 </li>
 </ul>
 <p>此部分内容暂略…</p>
-<h2 id="杰理SDK软件架构解析"><a href="#杰理SDK软件架构解析" class="headerlink" title="杰理SDK软件架构解析"></a>杰理SDK软件架构解析</h2><h3 id="SDK框架总体概览"><a href="#SDK框架总体概览" class="headerlink" title="SDK框架总体概览"></a>SDK框架总体概览</h3><p><img src="/../pictures/%E6%9D%B0%E7%90%86SDK%E4%B8%BB%E6%A1%86%E6%9E%B6.drawio" alt="aaa"></p>
+<h2 id="杰理SDK软件架构解析"><a href="#杰理SDK软件架构解析" class="headerlink" title="杰理SDK软件架构解析"></a>杰理SDK软件架构解析</h2><h3 id="SDK框架总体概览"><a href="#SDK框架总体概览" class="headerlink" title="SDK框架总体概览"></a>SDK框架总体概览</h3><p><a href="../pictures/%E6%9D%B0%E7%90%86SDK%E4%B8%BB%E6%A1%86%E6%9E%B6.drawio">框架</a></p>
 <h3 id="SDK文件目录概览"><a href="#SDK文件目录概览" class="headerlink" title="SDK文件目录概览"></a>SDK文件目录概览</h3><p>以SDK包为根，主要有以下子目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//SDK</span><br><span class="line">│</span><br><span class="line">│</span><br><span class="line">├── apps</span><br><span class="line">│      │</span><br><span class="line">│      ├── common         # 通用中间层文件，如音频、蓝牙、全局通用配置、设备管理、文件系统等</span><br><span class="line">│      │</span><br><span class="line">│      └── soundbox       # 应用层的业务逻辑代码</span><br><span class="line">│</span><br><span class="line">├── cpu/br25             # 内核、芯片外设层的相关代码</span><br><span class="line">│      │</span><br><span class="line">│      ├── audio_common/</span><br><span class="line">│      │</span><br><span class="line">│      ├── tools/        # 工具集，包含有配置工具、烧录脚本等</span><br><span class="line">│      │</span><br><span class="line">│      └── ...           # </span><br><span class="line">│</span><br><span class="line">│</span><br><span class="line">└── include_lib          # 封装好，以供调用或者链接的库，包含OS、FS、外设底层驱动等</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
